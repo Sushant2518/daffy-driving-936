@@ -38,8 +38,10 @@ public class AdminUI {
 		ProductService productService = new ProductServiceImpl();
 		try {
 			List<Product> productList = productService.getProductList();
-			productList.forEach(product -> System.out.println("Id : " + product.getProductId() + " Product Name : " 
-					+ product.getName() + " Product Brand : " + product.getBrand() + " Product Category : " + product.getCategory()+"Product Price : "+product.getPrice()+"Product Quantity : "+product.getQuantity()));
+			productList.forEach(product -> System.out.println("Id : " + product.getProductId() +
+					" Product Name : " + product.getName() + " Product Brand : " 
+					+ product.getBrand() + " Product Category : " + product.getCategory()+
+					" Product Price : "+product.getPrice()+" Product Quantity : "+product.getQuantity()));
 		}catch(SomeThingWentWrongException | NoRecordFoundException ex) {
 			System.out.println(ex.getMessage());
 		}

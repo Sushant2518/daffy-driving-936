@@ -43,7 +43,21 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public List<Product> getProductList() throws SomeThingWentWrongException, NoRecordFoundException {
 		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = null;
+		List<Product> productList = null;
+		try {
+			em = EMUtils.getEntityManager();
+			Query query = em.createQuery("FROM Product p");
+			productList = (List<Product>)query.getResultList();
+			if(productList.size() ==0) {
+				throw new NoRecordFoundException("No Product Found");
+			}
+		}catch(IllegalArgumentException ex) {
+			throw new SomeThingWentWrongException("Unable to process request, try again later");
+		}finally{
+			em.close();
+		}
+		return productList;
 	}
 
 	@Override
