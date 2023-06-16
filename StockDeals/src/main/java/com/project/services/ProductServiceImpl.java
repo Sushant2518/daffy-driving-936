@@ -1,36 +1,42 @@
 package com.project.services;
 
-import com.project.entity.*;
-import com.project.entity.Product;
-import com.project.exception.SomeThingWentWrongException;
+import java.util.List;
 
-public class ProductServiceImpl {
-	
+import com.project.entity.Product;
+import com.project.exception.NoRecordFoundException;
+import com.project.exception.SomeThingWentWrongException;
+import com.project.dao.*;
+
+public class ProductServiceImpl implements ProductService{
+
+	@Override
 	public void addProduct(Product product) throws SomeThingWentWrongException {
-		//Create an object of DAO class here
+		// TODO Auto-generated method stub
 		ProductDAO productDAO = new ProductDAOImpl();
 		productDAO.addProduct(product);
 	}
-	
+
 	@Override
-	public List<Product> getProductList() throws SomeThingWentWrongException, NoRecordFoundException{
-		//Create an object of DAO class here
+	public List<Product> getProductList() throws SomeThingWentWrongException, NoRecordFoundException {
+		// TODO Auto-generated method stub
 		ProductDAO productDAO = new ProductDAOImpl();
 		return productDAO.getProductList();
 	}
-	
+
+
+
 	@Override
-	public void updateProduct(Product product) throws SomeThingWentWrongException, NoRecordFoundException{
-		//Create an object of DAO class here
-		ProductDAO productDAO = new ProductDAOImpl();
-		productDAO.updateProduct(product);
+	public Product getProductObjectByName(String productName)
+			throws SomeThingWentWrongException, NoRecordFoundException {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
 	@Override
-	public Product getProductObjectByName(String name) throws SomeThingWentWrongException, NoRecordFoundException{
-		//Create an object of DAO class here
-		ProductDAO productDAO = new ProductDAOImpl();
-		return productDAO.getProductObjectByName(name);
+	public void updateProduct(Product product) throws SomeThingWentWrongException, NoRecordFoundException {
+		// TODO Auto-generated method stub
+		
 	}
+
 
 }

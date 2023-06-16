@@ -24,10 +24,10 @@ public class StockDeals {
     				AdminUI.viewProduct();
     				break;
     			case 3:
-    				AdminUI.updateProductDetails(sc);
+//    				AdminUI.updateProductDetails(sc);
     				break;
     			case 4:
-    				AdminUI.deleteProduct(sc);
+//    				AdminUI.deleteProduct(sc);
     				break;
     			case 0:
     				System.out.println("Bye Bye Admin");
