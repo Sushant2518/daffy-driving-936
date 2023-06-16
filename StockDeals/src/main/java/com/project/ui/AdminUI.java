@@ -46,4 +46,33 @@ public class AdminUI {
 			System.out.println(ex.getMessage());
 		}
 	}
+	
+	static void updateProductDetails(Scanner sc) {
+		//code to take company details input
+		System.out.print("Enter Product id ");
+		int productId = sc.nextInt();
+		System.out.print("Enter Product Name ");
+		String name = sc.next();
+		System.out.print("Enter Category ");
+		String category = sc.next();
+		System.out.print("Enter Brand ");
+		String brand = sc.next();
+		System.out.print("Enter Price ");
+		Double price = sc.nextDouble();
+		System.out.print("Enter Quantity ");
+		int quantity = sc.nextInt();
+		
+		Product product = new Product(name, category, brand, price, quantity);
+		product.setProductId(productId);
+//		company.setId(id);
+		
+		//Create an object of Service Layer here
+		ProductService productService = new ProductServiceImpl();
+		try {
+			productService.updateProduct(product);
+			System.out.println("Product updated successfully");
+		}catch(SomeThingWentWrongException | NoRecordFoundException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
 }
