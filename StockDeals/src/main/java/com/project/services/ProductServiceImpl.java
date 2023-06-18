@@ -24,18 +24,18 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 
-
-	@Override
-	public Product getProductObjectByName(String productName)
-			throws SomeThingWentWrongException, NoRecordFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public void updateProduct(Product product) throws SomeThingWentWrongException, NoRecordFoundException {
 		// TODO Auto-generated method stub
-		
+		ProductDAO productDAO = new ProductDAOImpl();
+		productDAO.updateProduct(product);
+	}
+
+	@Override
+	public void deleteProduct(int productId) throws SomeThingWentWrongException, NoRecordFoundException {
+		// TODO Auto-generated method stub
+		ProductDAO productDAO = new ProductDAOImpl();
+		productDAO.deleteProduct(productId);
 	}
 
 

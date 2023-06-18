@@ -10,7 +10,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.Query;
-
+import com.project.entity.Product;
 public class ProductDAOImpl implements ProductDAO{
 
 	@Override
@@ -66,20 +66,16 @@ public class ProductDAOImpl implements ProductDAO{
 		EntityManager em = null;
 		try {
 			em = EMUtils.getEntityManager();
-			//check if company with company with given id exists
+			
 			Product productFromDB = em.find(Product.class, product.getProductId());
 			if(productFromDB == null)
 				throw new NoRecordFoundException("No Product found with the given id " + product.getProductId());
 
-			//You are here means company exists with given id
-			//check if company is to be renamed
-			if(!productFromDB.getName().equals(product.getName())) {
-				//you are here means company is to be renamed, check for no existing company with new name.
-				//check if company with same name exists
+				if(!productFromDB.getName().equals(product.getName())) {
 				Query query = em.createQuery("SELECT count(c) FROM Product c WHERE name = :name");
-				query.setParameter("productName", product.getName());
+				query.setParameter("name", product.getName());
 				if((Long)query.getSingleResult() > 0) {
-					//you are here means company with given name exists so throw exceptions
+					
 					throw new SomeThingWentWrongException("Product already exists with name " + product.getName());
 				}
 			}
@@ -88,9 +84,11 @@ public class ProductDAOImpl implements ProductDAO{
 			
 			EntityTransaction et = em.getTransaction();
 			et.begin();
-			productFromDB.setName(company.getCompanyName());
-			productFromDB.setEstdYear(company.getEstdYear());
-			productFromDB.setSectorType(company.getSectorType());
+			productFromDB.setName(product.getName());
+			productFromDB.setBrand(product.getBrand());
+			productFromDB.setCategory(product.getCategory());
+			productFromDB.setPrice(product.getPrice());
+			productFromDB.setQuantity(product.getQuantity());
 			et.commit();
 		}catch(PersistenceException ex) {
 			throw new SomeThingWentWrongException("Unable to process request, try again later");
@@ -99,11 +97,34 @@ public class ProductDAOImpl implements ProductDAO{
 		}
 	}
 
+
 	@Override
-	public Product getCompanyObjectByName(String companyName)
-			throws SomeThingWentWrongException, NoRecordFoundException {
+	public void deleteProduct(int productId) throws SomeThingWentWrongException, NoRecordFoundException {
 		// TODO Auto-generated method stub
-		return null;
+		Product product = new Product();
+		product.setProductId(productId);
+		//Life-Cycle phase: detached
+		
+		EntityManager em = null;
+		EntityTransaction et = null;
+		try {
+			em = EMUtils.getEntityManager();
+			et = em.getTransaction();
+			et.begin();
+			
+			//merged method returns an entity which is in the managed state
+			product = em.merge(product);	//Life-Cycle phase: managed
+			em.remove(product);	//Life-Cycle phase: removed
+			et.commit();
+		}catch(PersistenceException ex) {
+			et.rollback();
+			ex.printStackTrace();
+			throw new SomeThingWentWrongException("Unable to delete Product, try again later");
+		}finally {
+			em.close();
+		}
 	}
+
+
 
 }
