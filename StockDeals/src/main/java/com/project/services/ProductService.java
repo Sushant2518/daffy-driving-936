@@ -10,5 +10,5 @@ public interface ProductService {
 	void addProduct(Product product) throws SomeThingWentWrongException;
 	List<Product> getProductList() throws SomeThingWentWrongException, NoRecordFoundException;
 	void updateProduct(Product product) throws SomeThingWentWrongException, NoRecordFoundException;
-	Product getProductObjectByName(String productName) throws SomeThingWentWrongException, NoRecordFoundException;
+	void deleteProduct(int productId) throws SomeThingWentWrongException, NoRecordFoundException;
 }

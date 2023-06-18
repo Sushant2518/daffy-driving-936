@@ -27,7 +27,7 @@ public class StockDeals {
     				AdminUI.updateProductDetails(sc);
     				break;
     			case 4:
-//    				AdminUI.deleteProduct(sc);
+    				AdminUI.deleteProduct(sc);
     				break;
     			case 0:
     				System.out.println("Bye Bye Admin");

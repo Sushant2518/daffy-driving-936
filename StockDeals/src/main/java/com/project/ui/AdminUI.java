@@ -75,4 +75,17 @@ public class AdminUI {
 			System.out.println(ex.getMessage());
 		}
 	}
+	
+	static void deleteProduct(Scanner sc) {
+		System.out.print("Enter product Id ");
+		int productId = sc.nextInt();
+		
+		ProductService productService = new ProductServiceImpl();
+		try {
+			productService.deleteProduct(productId);
+			System.out.println("Product deleted successfully");
+		}catch(SomeThingWentWrongException | NoRecordFoundException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
 }
