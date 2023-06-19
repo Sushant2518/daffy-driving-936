@@ -1,10 +1,16 @@
 package com.project.entity;
 
+import java.util.Objects;
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Product {
@@ -27,7 +33,11 @@ public class Product {
 
     @Column(name = "quantity")
     private int quantity;
-
+//    
+//    @ManyToMany(mappedBy = "orderProductSet")
+//	private Set<Customer> customer;
+//	@OneToMany(cascade =  CascadeType.ALL, mappedBy = "product")
+//	Set<Product> productSet;
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -40,6 +50,8 @@ public class Product {
 		this.brand = brand;
 		this.price = price;
 		this.quantity = quantity;
+//		this.customer = customer;
+//		this.productSet = productSet;
 	}
 	
 	public void setProductId(int productId) {
@@ -89,6 +101,34 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
 	
+//	public Set<Product> getProductSet() {
+//		return productSet;
+//	}
+//	public void setProductSet(Set<Product> productSet) {
+//		this.productSet = productSet;
+//	}
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(brand, category, name, price, productId, productSet, quantity);
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Product other = (Product) obj;
+//		return Objects.equals(brand, other.brand) && Objects.equals(category, other.category)
+//				&& Objects.equals(name, other.name)
+//				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
+//				&& productId == other.productId && Objects.equals(productSet, other.productSet)
+//				&& quantity == other.quantity;
+//	}
+	
+	
+
 }

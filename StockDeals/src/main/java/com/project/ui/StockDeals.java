@@ -1,12 +1,13 @@
 package com.project.ui;
 import java.util.Scanner;
+
 public class StockDeals {
 	static void displayAdminMenu() {
 		System.out.println("1. Add Product");
 		System.out.println("2. View All Products");
 		System.out.println("3. Update Product Details");
 		System.out.println("4. Delete Product");
-		System.out.println("5. View All Insurance Plan");
+//		System.out.println("5. View All Insurance Plan");
 		System.out.println("0. Logout");
 	}
 	
@@ -68,7 +69,7 @@ public class StockDeals {
 //    				CustomerUI.userLogin(sc);
     				break;
     			case 3:
-//    				CustomerUI.customerRegistration(sc);
+//    				CustomerUI.userRegistration(sc);
     				break;
     			case 0:
     				System.out.println("Thanks for using the services");
